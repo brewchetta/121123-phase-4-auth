@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 SQLAlchemy = "1.4.49"
-flask = "2.2.2"
-flask-sqlalchemy = "2.5.1"
-flask-migrate = "4.0.0"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 sqlalchemy-serializer = "1.4.1"
 importlib-metadata = "6.0.0"
 importlib-resources = "5.10.0"
