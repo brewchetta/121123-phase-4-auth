@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import UserPanel from "./UserPanel"
 import Notes from "./Notes"
 
@@ -7,7 +7,7 @@ const POST_HEADERS = {
   'Accept': 'application/json'
 }
 
-const URL = "http://localhost:5555/api"
+const URL = "/api"
 
 function App() {
 
@@ -17,6 +17,16 @@ function App() {
 
 
   // SIGNUP, LOGIN AND LOGOUT FNS //
+
+  useEffect(() => {
+    fetch(URL + '/check_session')
+    .then(res => {
+      if (res.ok) {
+        res.json()
+        .then( data => setCurrentUser(data) )
+        }
+      })
+  }, [])
 
   // SIGNUP //
   async function attemptSignup(userInfo) {
@@ -48,9 +58,16 @@ function App() {
     }
   }
 
+  // async function getGames() {
+  //   const res = await fetch('/games')
+  //   const data = await res.json()
+  //   setGames(data)
+  // }
+
   // LOGOUT //
   function logout() {
     setCurrentUser(null)
+    fetch(URL + '/logout', { method: 'DELETE' })
   }
 
 

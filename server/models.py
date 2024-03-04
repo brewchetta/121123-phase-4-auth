@@ -18,6 +18,7 @@ class User(db.Model, SerializerMixin):
     # COLUMNS #
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
 
     # RELATIONSHIP #
     notes = db.relationship('Note', back_populates='user')
